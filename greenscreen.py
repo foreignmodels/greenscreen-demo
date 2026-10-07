@@ -8,6 +8,7 @@ project_dir = Path(__file__).resolve().parent
 background_path = project_dir / "background.jpg"
 greenscreen_path = project_dir / "greenscreen.jpg"
 
+
 # Read the background image
 background = cv2.imread(str(background_path))
 if background is None:
@@ -17,6 +18,8 @@ background = cv2.resize(background, (640, 480))
 
 # Read the greenscreen image/video
 capture = cv2.VideoCapture(str(greenscreen_path))
+lower_green = np.array([35, 100, 100])
+upper_green = np.array([85, 255, 255])
 
 if not capture.isOpened():
     raise OSError(f"Could not open green-screen input: {greenscreen_path}")
@@ -52,7 +55,7 @@ while True:
     mask_inv = (255 - mask).astype(np.uint8)
     cutout = (a * final_cap).astype(np.uint8)
     background_cutout = ((1 - a) * background.astype(np.float32)).astype(np.uint8)
-
+    
     plt.figure(Path(__file__).name, figsize=(20, 10))
     plt.subplot(2, 3, 1)
     plt.imshow(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
@@ -84,7 +87,11 @@ while True:
     plt.title('Result')
     plt.axis('off')
 
+    #comment out the following lines to disable the matplotlib display
     plt.show()
+    
+    #Uncomment the following lines to display a video
+    #cv2.imshow('Video', result)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
