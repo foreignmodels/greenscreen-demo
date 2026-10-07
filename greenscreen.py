@@ -6,7 +6,7 @@ from pathlib import Path
 
 project_dir = Path(__file__).resolve().parent
 background_path = project_dir / "background.jpg"
-greenscreen_path = project_dir / "greenscreen.jpg"
+greenscreen_path = project_dir / "greenscreenvideo.mp4"
 
 
 # Read the background image
@@ -87,10 +87,10 @@ while True:
     plt.axis('off')
 
     #comment out the following lines to disable the matplotlib display
-    plt.show()
+    #plt.show()
     
     #Uncomment the following lines to display a video
-    #cv2.imshow('Video', result)
+    cv2.imshow('Video', result)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break

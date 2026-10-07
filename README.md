@@ -1,5 +1,7 @@
 # greenscreen-demo
 Demo of how a green screen works using NumPy, Matplotlib, and OpenCV
+Team Name: Live Free or Pi
+Members: Brody and Aiden
 
 1. Install Libraries:
 
