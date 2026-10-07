@@ -18,8 +18,7 @@ background = cv2.resize(background, (640, 480))
 
 # Read the greenscreen image/video
 capture = cv2.VideoCapture(str(greenscreen_path))
-lower_green = np.array([35, 100, 100])
-upper_green = np.array([85, 255, 255])
+
 
 if not capture.isOpened():
     raise OSError(f"Could not open green-screen input: {greenscreen_path}")
