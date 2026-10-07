@@ -15,11 +15,6 @@ if background is None:
 
 background = cv2.resize(background, (640, 480))
 
-#Uper and lower bounds for green thresholding in HSV color space
-#HSV has 3 values: Hue, Saturation, Value
-lower_green = np.array([35, 100, 100])
-upper_green = np.array([85, 255, 255])
-
 # Read the greenscreen image/video
 capture = cv2.VideoCapture(str(greenscreen_path))
 
@@ -45,7 +40,7 @@ while True:
     # Create a transparency mask based on the distance
     alpha = np.clip((d - T1) / (T2 - T1), 0, 1)
     # Blend the original image with the background using the transparency mask
-    a = alpha[..., None]
+    a = alpha.reshape(480, 640, 1)
     result = (1 - a) * image + a * background.astype(np.float32)
     mask = (alpha * 255).astype(np.uint8)
 
