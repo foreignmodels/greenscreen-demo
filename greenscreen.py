@@ -26,9 +26,6 @@ while True:
     if not ret or frame is None:
         break
     frame = cv2.resize(frame, (640, 480))
-    
-    # Convert the frame to HSV color space
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
     #Green color explicit threshold
     keyColor = (0, 255, 0) 
