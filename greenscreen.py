@@ -44,7 +44,7 @@ while True:
     result = (1 - a) * image + a * background.astype(np.float32)
     mask = (alpha * 255).astype(np.uint8)
 
-    #Caps green channel to avoid green spill. This section lines 52-56 were generated with help from ClaudeCode
+    #Caps green channel to avoid green spill. This section up until the final_cap line were generated with help from ClaudeCode
     blue_cap, green_cap, red_cap = cv2.split(image)
     # Cap the green channel to be no more than 10 above the maximum of the blue and red channels
     green_cap = np.minimum(green_cap, np.maximum(blue_cap, red_cap) + 10)
